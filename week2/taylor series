@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+float convert_radian(float d)
+{
+float rad;
+rad=(3.1412/180)*d;
+return rad;
+}
+float compute_sine(float x)
+{
+	float term,sum,prev,diff;
+	int i;
+	term=sum=diff=x;
+	for(i=3; diff>0.000001;i=i+2)
+{
+	prev=term;
+	term=(-term*x*x)/(i*(i-1));
+	diff=fabs(prev-term);
+	sum=sum+term;
+}
+return sum;
+}
+int main()
+{
+	float degree,x,sum,s;
+	printf("enter the angle in degree\n");
+	scanf("%f", &degree);
+	x=convert_radian(degree);
+	sum=compute_sine(x);
+	printf("the sine of %f from taylor's series is %f",degree,sum);
+	printf("the sine of %f from the function is %f", degree,s);
+	return 0;
+}
